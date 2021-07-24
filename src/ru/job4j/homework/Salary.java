@@ -1,48 +1,40 @@
 package ru.job4j.homework;
 
-public class Salary {
+import java.util.Arrays;
 
-    public static int[] merge(int[] left, int[] right) {
-        int[] rsl = new int[left.length + right.length];
-        int n = 0;
-        int m = 0;
-        int e = 0;
-        while (n < rsl.length) {
-            if (m == left.length) {
-                rsl[n] = right[e];
-                n++;
-                e++;
-            }
-            one:
-            while (m < left.length) {
-                while (e < right.length) {
-                    if (left[m] <= right[e]) {
-                        rsl[n] = left[m];
-                        n++;
-                        m++;
-                        break one;
-                    } else {
-                        rsl[n] = right[e];
-                        n++;
-                        e++;
-                        break one;
+    public class Salary {
+
+        public static int[] or(int[] left, int[] right) {
+            int[] temp = new int[left.length + right.length];
+            int[] s = new int[left.length + right.length];
+            int count = 0;
+            int l = 0;
+            for (int i = 0; i < left.length; i++) {
+                    temp[l++] = left[i];
+                }
+                for (int i = 0; i < right.length; i++) {
+                    temp[l++] = right[i];
+                }
+                if (left.length == 0 || right.length == 0) {
+                    return temp;
+                }
+
+            s[count] = temp[0];
+                for (int i = 1; i < temp.length; i++) {
+                    boolean check = false;
+                    for (int j = 0; j < count + 1; j++) {
+                        if (s[j] != temp[i]) {
+                            check = true;
+                        } else {
+                            check = false;
+                            break;
+                        }
+                    }
+                    if (check) {
+                        s[++count] = temp[i];
                     }
                 }
-                rsl[n] = left[m];
-                n++;
-                m++;
-            }
-        }
-        return rsl;
-    }
-
-    public static void main(String[] args) {
-        int[] a = {};
-        int[] b = {};
-        int[] res = merge(a, b);
-        for (int re : res) {
-            System.out.println(re);
+                return Arrays.copyOf(s, count + 1);
         }
 
-    }
 }
