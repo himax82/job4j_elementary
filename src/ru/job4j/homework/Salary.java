@@ -3,38 +3,40 @@ package ru.job4j.homework;
 import java.util.Arrays;
 
     public class Salary {
-
-        public static int[] or(int[] left, int[] right) {
-            int[] temp = new int[left.length + right.length];
-            int[] s = new int[left.length + right.length];
+        public static int[][] found(int[] data, int up, int down) {
+            int[][] result = new int[data.length][];
+            int[] temp = new int[2];
+            int j = 0;
             int count = 0;
-            int l = 0;
-            for (int i = 0; i < left.length; i++) {
-                    temp[l++] = left[i];
+            for (int i = 0; i < data.length; i++) {
+                while (data[i] >= up || data[i] <= down) {
+                    temp[j++] = i;
+                    break;
                 }
-                for (int i = 0; i < right.length; i++) {
-                    temp[l++] = right[i];
+                if (j  == 2) {
+                    result[count++] = temp;
+                    j = 0;
+                    temp = new int[2];
                 }
-                if (left.length == 0 || right.length == 0) {
-                    return temp;
-                }
+            }
+            if (j == 1 && count == 0) {
+                temp[1] = temp[0];
+                result[0] = temp;
+                count++;
+            }
+            return Arrays.copyOf(result, count);
+        }
 
-            s[count] = temp[0];
-                for (int i = 1; i < temp.length; i++) {
-                    boolean check = false;
-                    for (int j = 0; j < count + 1; j++) {
-                        if (s[j] != temp[i]) {
-                            check = true;
-                        } else {
-                            check = false;
-                            break;
-                        }
-                    }
-                    if (check) {
-                        s[++count] = temp[i];
-                    }
+        public static void main(String[] args) {
+            int[] data = {5, 16, 17, 15, 10, 1, 2};
+            int[][] rsl = found(data, 16, 4);
+            for (int i = 0; i < rsl.length; i++) {
+                for (int j = 0; j < rsl[i].length; j++) {
+                    int temp = rsl[i][j];
+                    System.out.print(temp + " ");
                 }
-                return Arrays.copyOf(s, count + 1);
+                System.out.println();
+            }
         }
 
 }
