@@ -9,15 +9,13 @@ public class ConvertList2Array {
         int[][] array = new int[groups][cells];
         int row = 0, cell = 0;
         for (Integer num : list) {
-            array[row][cell] = num;
+            array[row][cell++] = num;
             if (num.equals(list.get(list.size() - 1))) {
                 break;
             }
-            if (cell == cells - 1) {
+            if (cell == cells) {
                 row++;
                 cell = 0;
-            } else {
-                cell++;
             }
         }
         return array;
