@@ -1,20 +1,15 @@
 package ru.job4j.homework;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Temp {
 
-    public static int checkData(List<Integer> data) {
-        int sum = data.get(0);
-        for (int i = 1; i < data.size(); i++) {
-            if (data.get(i) == (data.get(i - 1) + data.get(i + 1)) / 2) {
-                sum += data.get(i);
-            } else {
-                return 0;
-            }
+    public static boolean checkString(String s) {
+        char[] chars = s.toCharArray();
+        Set<Character> set = new HashSet<>();
+        for (char ch : chars) {
+            set.add(ch);
         }
-        return sum;
+        return set.size() == chars.length;
     }
 }
