@@ -8,10 +8,14 @@ public class UniqueText {
         boolean rsl = true;
         String[] origin = originText.split(" ");
         String[] text = duplicateText.split(" ");
-        HashSet<String> check = new HashSet<>(Arrays.asList(origin));
+        HashSet<String> check = new HashSet<>();
+        for (String s: origin) {
+            check.add(s);
+        }
         for (String s : text) {
             if (!check.contains(s)) {
                 rsl = false;
+                break;
             }
         }
         return rsl;
