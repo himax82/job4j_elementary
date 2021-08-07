@@ -4,12 +4,15 @@ import java.util.*;
 
 public class Temp {
 
-    public static boolean checkString(String s) {
-        char[] chars = s.toCharArray();
-        Set<Character> set = new HashSet<>();
-        for (char ch : chars) {
-            set.add(ch);
+    private Map<Integer, List<String>> store = new HashMap<>();
+
+    public void addValue(int index, List<String> list) {
+        if (!store.containsKey(index)) {
+            store.put(index, list);
         }
-        return set.size() == chars.length;
+    }
+
+    public List<String> getValue(int index) {
+        return store.getOrDefault(index, new ArrayList<>());
     }
 }

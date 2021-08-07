@@ -20,7 +20,6 @@ public class BankService {
         if (!accounts.contains(account)) {
             accounts.add(account);
         }
-        users.put(userFind, accounts);
         }
     }
 
@@ -51,10 +50,8 @@ public class BankService {
         Account srcAcc = findByRequisite(srcPassport, srcRequisite);
         Account destAcc = findByRequisite(destPassport, destRequisite);
         if (srcAcc != null && destAcc != null && srcAcc.getBalance() >= amount) {
-            double balancesrs = srcAcc.getBalance();
-            double balancedest = destAcc.getBalance();
-            srcAcc.setBalance(balancesrs - amount);
-            destAcc.setBalance(balancedest + amount);
+            srcAcc.setBalance(srcAcc.getBalance() - amount);
+            destAcc.setBalance(destAcc.getBalance() + amount);
             return true;
         }
         return false;
