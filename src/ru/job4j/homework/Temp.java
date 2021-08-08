@@ -4,15 +4,43 @@ import java.util.*;
 
 public class Temp {
 
-    private Map<Integer, List<String>> store = new HashMap<>();
-
-    public void addValue(int index, List<String> list) {
-        if (!store.containsKey(index)) {
-            store.put(index, list);
+    public static int sumLegs(Map<Animal, Integer> data) {
+        int sum = 0;
+        for (Animal a : data.keySet()) {
+            sum += a.getLegs() * data.get(a);
         }
+        return sum;
     }
 
-    public List<String> getValue(int index) {
-        return store.getOrDefault(index, new ArrayList<>());
+    public static class Animal {
+        private String name;
+
+        private int legs;
+
+        public Animal(String name, int legs) {
+            this.name = name;
+            this.legs = legs;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getLegs() {
+            return legs;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Animal animal = (Animal) o;
+            return Objects.equals(name, animal.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
+        }
     }
 }
