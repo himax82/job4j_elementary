@@ -2,8 +2,18 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает свойства
+ * банковского счета.
+ * @author MAKSIM
+ * @version 1.0
+ */
 public class Account {
-
+    /**
+     * В поле requisite хранится номер счета
+     * пользователя, в поле balance хранится
+     * информация о балансе на счете
+     */
     private String requisite;
     private double balance;
 
