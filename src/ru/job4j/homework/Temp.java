@@ -1,46 +1,20 @@
 package ru.job4j.homework;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Temp {
 
-    public static int sumLegs(Map<Animal, Integer> data) {
-        int sum = 0;
-        for (Animal a : data.keySet()) {
-            sum += a.getLegs() * data.get(a);
+    public static int checkData(List<Integer> data) {
+        int sum = data.get(0);
+        for (int i = 1; i < data.size(); i++) {
+            if (data.get(i) == (data.get(i - 1) + data.get(i + 1)) / 2) {
+                sum += data.get(i);
+            } else {
+                return 0;
+            }
         }
         return sum;
-    }
-
-    public static class Animal {
-        private String name;
-
-        private int legs;
-
-        public Animal(String name, int legs) {
-            this.name = name;
-            this.legs = legs;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getLegs() {
-            return legs;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Animal animal = (Animal) o;
-            return Objects.equals(name, animal.name);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(name);
-        }
     }
 }
