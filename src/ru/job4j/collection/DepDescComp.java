@@ -11,10 +11,7 @@ public class DepDescComp implements Comparator<String> {
         List<String> list1 = Arrays.asList(o1.split("/"));
         List<String> list2 = Arrays.asList(o2.split("/"));
         int rsl = list2.get(0).compareTo(list1.get(0));
-        if (rsl == 0) {
-            return o1.compareTo(o2);
-        }
-        return rsl;
+        return rsl == 0 ? o1.compareTo(o2) : rsl;
     }
 }
 
